@@ -1,0 +1,3 @@
+[submodule "sentiment-ui"]
+	path = sentiment-ui
+	url = git@github.com:VarunSH-15-11-2001/sentiment-ui.git
