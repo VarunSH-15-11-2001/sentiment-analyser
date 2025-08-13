@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  api:
+    build: ./sentiment-api
+    container_name: sentiment-api
+    ports:
+      - "8080:8080"
+    # Optional: keep HF cache across restarts (faster cold starts)
+    # volumes:
+    #   - hf_cache:/root/.cache/huggingface
+    environment:
+      # Add any env you want the backend to see
+      - PYTHONUNBUFFERED=1
+
+  web:
+    build: ./senti-ui
+    container_name: sentiment-web
+    ports:
+      - "3000:80"
+    environment:
+      # Frontend talks to the API over the compose network by service name
+      - API_BASE=http://api:8080
+    depends_on:
+      - api
+
+# Uncomment if you enabled the volume above
+# volumes:
+#   hf_cache:
+

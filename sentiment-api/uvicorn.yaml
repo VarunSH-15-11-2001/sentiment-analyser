@@ -1,0 +1,18 @@
+version: 1
+formatters:
+  default:
+    "()": uvicorn.logging.DefaultFormatter
+    fmt: "%(levelprefix)s %(asctime)s - %(message)s"
+    use_colors: true
+handlers:
+  default:
+    class: logging.StreamHandler
+    formatter: default
+loggers:
+  uvicorn:
+    handlers: [default]
+    level: INFO
+  uvicorn.error:
+    level: INFO
+  uvicorn.access:
+    level: INFO
